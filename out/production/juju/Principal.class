@@ -1,0 +1,55 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Principal {
+    public Principal() {
+    }
+
+    public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
+        List<Venda> vendas = new ArrayList();
+        Date data = new Date();
+        double total = 0.0;
+        Scanner input = new Scanner(System.in);
+        int opcao = 1;
+
+        while(opcao == 1) {
+            System.out.println("Para terminar a venda, digite 2. Para continuar, digite 1: ");
+            opcao = input.nextInt();
+            if (opcao >= 2) {
+                break;
+            }
+
+            System.out.println("Digite o nome do vendedor: ");
+            String vendedorNome = input.next();
+            System.out.println("Digite o id do vendedor: ");
+            int vendedorId = input.nextInt();
+            System.out.println("Digite o valor da venda realizada: ");
+            double valor = input.nextDouble();
+            Venda venda = Venda.criarVenda();
+            venda.processarVenda(vendas, data, valor, vendedorId, vendedorNome);
+            vendas.add(venda);
+            venda.imprimir();
+        }
+
+        Venda venda;/**/
+        for(Iterator var12 = vendas.iterator(); var12.hasNext(); total += venda.getValor()) {
+            venda = (Venda)var12.next();
+        }
+
+        double media = total / (double)vendas.size();
+        System.out.println("Total de vendas: " + total);
+        System.out.println("Média de vendas: " + media);
+        VendaServico servico = new VendaServicoImpl();
+        servico.executar();
+    }
+}
